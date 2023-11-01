@@ -6,3 +6,32 @@ This will consist of two parts this github page documenting things I've lerned a
 
 Please not a large portion of the code upto this point (11/1/2023) was created following an online corse from this channel https://www.youtube.com/@ChrisCourses.
 I plan to improve upon this code as well as implement a few feautures to better ilistrate different findings related to multimedia in relation to the code
+
+Currently the game is being hosted at http://172.232.174.154:3000/ 
+
+Multiple servers created: socket, http, io to create the necessary functions required for the multiplayer game. Socket, http and io are wrapped around eachother to allow for a varity of connections between both the front end and back end of the server.
+
+Backend vs frontend
+  - backend is the server side of the game, the hidden things you don't see while normaly interacting with the game. It mostly deals with any relation from one player to another.  
+
+Reduce lag via client side prediction
+ - Any server will have some level of latency associated with it use of clever workarounds to predict hot the player will move and reduce perceived lag (auto update where you are instantly on client side) illusionary movement not nessisarly 1:1 with the backend
+
+Authoritative server movement.
+ - Have the backend server control movement and projectiels this is to remove the chance of any cheating. if the movement and projectiels were created and authorized in the client side then it could be manipulated on the client side and pushed to other players
+
+Event ticker (game tick) 
+ - this is used to crontroll player broadcasts of events to reduce over use and clogging of the server. this does help reduce the chance of loss of player boradcasts but a ticker that is too large will be precived the same as lag as updates and refreshes to the players will take time. note according to Vale game studios recommended backend tick rate is 15ms giving a roughly 66tps game update speed
+
+Server reconciliation 
+ - used for syncing and updating backend if there are any missed reads of movements due to latency or other problems
+
+Interpolation of back end player movement viewed by player 2. 
+ - Needed to smooth out any lag related choppiness and helps lower the precived amount of lag experienced by the player on the client end
+
+
+#things to research and add onto the game 
+1. add a way to ilistrate effectivly how lag would effect a player (maybe artifical lag?)
+2. add sounds to learn about syncing sound events
+3. other
+ 
