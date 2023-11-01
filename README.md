@@ -7,7 +7,7 @@ This will consist of two parts this github page documenting things I've lerned a
 Please not a large portion of the code upto this point (11/1/2023) was created following an online corse from this channel https://www.youtube.com/@ChrisCourses.
 I plan to improve upon this code as well as implement a few feautures to better ilistrate different findings related to multimedia in relation to the code
 
-Currently the game is being hosted at http://172.232.174.154:3000/ 
+Currently the game is being hosted at http://172.232.174.154:3000/ its a simple pvp game, you are welcome to try but it only fully works with more than 1 player
 
 Multiple servers created: socket, http, io to create the necessary functions required for the multiplayer game. Socket, http and io are wrapped around eachother to allow for a varity of connections between both the front end and back end of the server.
 
@@ -33,5 +33,5 @@ Interpolation of back end player movement viewed by player 2.
 #things to research and add onto the game 
 1. add a way to ilistrate effectivly how lag would effect a player (maybe artifical lag?)
 2. add sounds to learn about syncing sound events
-3. other
+3. other (health bar, mobs, items, sprites)
  
