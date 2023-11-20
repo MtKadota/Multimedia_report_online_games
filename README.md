@@ -34,4 +34,14 @@ Interpolation of back end player movement viewed by player 2.
 1. add a way to ilistrate effectivly how lag would effect a player (maybe artifical lag?)
 2. add sounds to learn about syncing sound events
 3. other (health bar, mobs, items, sprites)
- 
+
+Update
+A better understanding of lag 
+  Lag is something that will occur in every online medium often broadly categorized as any connective disruption in the flow of information. A large part of what I have done so far with the project revolves around mitigating this lag in each of its forms. Within any online game lag will often be perceived in three forms. 
+
+Input lag
+  - This lag takes place between the controller and the client device. This type of lag will often stem from physical problems with software or on occasion issues in the code. This type of lag can differ between relatively simple to incredibly complex to solve needing anywhere between a couple lines of code to a full predictive AI. Within my game it is solved relatively simply due to the fact there are very few moving parts to consider (see client side prediction)
+
+Processing lag
+ - This lag is usually seen within the client side device though on occasion can be seen in the backend also. It boils down to the device not having enough resources to properly process and display the game, think trying to run a game with 20+ chrome tabs open. Within the backend it will occure when there is more users or information sent to the backend then its able to handle. 
+
