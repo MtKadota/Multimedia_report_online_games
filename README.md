@@ -42,6 +42,9 @@ A better understanding of lag
 Input lag
   - This lag takes place between the controller and the client device. This type of lag will often stem from physical problems with software or on occasion issues in the code. This type of lag can differ between relatively simple to incredibly complex to solve needing anywhere between a couple lines of code to a full predictive AI. Within my game it is solved relatively simply due to the fact there are very few moving parts to consider (see client side prediction)
 
-Processing lag
- - This lag is usually seen within the client side device though on occasion can be seen in the backend also. It boils down to the device not having enough resources to properly process and display the game, think trying to run a game with 20+ chrome tabs open. Within the backend it will occure when there is more users or information sent to the backend then its able to handle. 
+Processing/graphical lag
+ - This lag is usually seen within the client side device though on occasion can be seen in the backend also. It boils down to the device not having enough resources to properly process and display the game, think trying to run a game with 20+ chrome tabs open. Within the backend it will occur when there are more users or information sent to the backend then it's able to handle. This problem can be further exacerbated by inefficiencies within the game lowering performance.
+
+Connection lag
+ - This refers usualy to any lag/ delay experienced between client and server and vice versa. there is often no proper way to get fully rid of this type of lag due to it being sometimes a physical issue but, it is possible to midigate its visable effects and there a large amount of stratagies to do. client side prediction, server reconciliation and Interpolation of back end player movement are all ways to reduce the preception of this lag.
 
