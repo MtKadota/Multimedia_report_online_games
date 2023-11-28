@@ -44,10 +44,10 @@ io.on('connection', (socket) => {
   })
   
   //game init
-  socket.on('initGame', ({username,width, height, devicePixelRatio})=>{
+  socket.on('initGame', ({username,width, height})=>{
     backendPlayers[socket.id] = {
-      x: 500 * Math.random(),
-      y: 500 * Math.random(),
+      x: 1024 * Math.random(),
+      y: 576 * Math.random(),
       color: `hsl(${360*Math.random()}, 100%, 50%)`,
       sequenceNumber: 0,
       score: 0,
@@ -58,9 +58,8 @@ io.on('connection', (socket) => {
       height
     }
 
-    if (devicePixelRatio > 1){
-      backendPlayers[socket.id].radius = 2 * Radius
-    }
+    backendPlayers[socket.id].radius = Radius
+
   })
 
   socket.on('disconnect', (reason)=>  {
@@ -89,9 +88,19 @@ io.on('connection', (socket) => {
         backendPlayers[socket.id].x += speed 
         break
     }
-  })
+    const playerSide = {
+      left: backendPlayers[socket.id].x - backendPlayers[socket.id].radius,
+      right: backendPlayers[socket.id].x + backendPlayers[socket.id].radius,
+      top: backendPlayers[socket.id].y - backendPlayers[socket.id].radius,
+      bottom: backendPlayers[socket.id].y + backendPlayers[socket.id].radius
+    }
+    if (playerSide.left < 0) backendPlayers[socket.id].x = backendPlayers[socket.id].radius
+    if (playerSide.right > 1024) backendPlayers[socket.id].x = 1024 -backendPlayers[socket.id].radius
+    if (playerSide.top < 0) backendPlayers[socket.id].y = backendPlayers[socket.id].radius
+    if (playerSide.bottom > 576) backendPlayers[socket.id].y = 576 - backendPlayers[socket.id].radius
 
-  console.log(backendPlayers)
+
+  })
 })
 
 //backend tick

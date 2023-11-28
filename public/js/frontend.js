@@ -7,8 +7,10 @@ const scoreEl = document.querySelector('#scoreEl')
 
 const devicePixelRatio = window.devicePixelRatio || 1
 
-canvas.width = innerWidth * devicePixelRatio
-canvas.height = innerHeight * devicePixelRatio
+canvas.width = 1024 * devicePixelRatio
+canvas.height = 576 * devicePixelRatio
+
+c.scale(devicePixelRatio,devicePixelRatio)
 
 const x = canvas.width / 2
 const y = canvas.height / 2
@@ -25,7 +27,9 @@ socket.on('updatePlayers', (BackendPlayers) =>{
         x: backendPlayer.x, 
         y: backendPlayer.y, 
         radius: 10, 
-        color: backendPlayer.color})
+        color: backendPlayer.color,
+        username: backendPlayer.username
+      })
       
       //add player to leaderbord
       document.querySelector('#playerLabels').innerHTML += `<div data-id="${id}">${backendPlayer.username}: ${backendPlayer.score}</div>`
@@ -69,12 +73,14 @@ socket.on('updatePlayers', (BackendPlayers) =>{
         })
       } else {
         // for all other players
-        gsap.to(frontendPlayers[id], {
-          x: backendPlayer.x,
-          y: backendPlayer.y,
-          duration: 0.015,
-          ease: 'linear'
-        })
+        if (backendPlayer.usernamev !=='back_lagger'){
+          gsap.to(frontendPlayers[id], {
+            x: backendPlayer.x,
+            y: backendPlayer.y,
+            duration: 0.015,
+            ease: 'linear'
+          })
+        }
       }
     }
   }
@@ -152,8 +158,8 @@ let animationId
 //let score = 0
 function animate() {
   animationId = requestAnimationFrame(animate)
-  c.fillStyle = 'rgba(0, 0, 0, 0.1)'
-  c.fillRect(0, 0, canvas.width, canvas.height)
+  //c.fillStyle = 'rgba(0, 0, 0, 0.1)'
+  c.clearRect(0, 0, canvas.width, canvas.height)
 
   for (const id in frontendPlayers){
     const frontendPlayer = frontendPlayers[id]
@@ -206,28 +212,36 @@ setInterval(() => {
   if (keys.w.pressed) {
     sequenceNumber++
     playerInputs.push({ sequenceNumber, dx: 0, dy: -SPEED })
-    frontendPlayers[socket.id].y -= SPEED
+    if (frontendPlayers[socket.id].username !=='front_lagger'){
+      frontendPlayers[socket.id].y -= SPEED
+    }
     socket.emit('keydown', { keycode: 'KeyW', sequenceNumber })
   }
 
   if (keys.a.pressed) {
     sequenceNumber++
     playerInputs.push({ sequenceNumber, dx: -SPEED, dy: 0 })
+    if (frontendPlayers[socket.id].username !=='front_lagger'){
     frontendPlayers[socket.id].x -= SPEED
+    }
     socket.emit('keydown', { keycode: 'KeyA', sequenceNumber })
   }
 
   if (keys.s.pressed) {
     sequenceNumber++
     playerInputs.push({ sequenceNumber, dx: 0, dy: SPEED })
+    if (frontendPlayers[socket.id].username !=='front_lagger'){
     frontendPlayers[socket.id].y += SPEED
+    }
     socket.emit('keydown', { keycode: 'KeyS', sequenceNumber })
   }
 
   if (keys.d.pressed) {
     sequenceNumber++
     playerInputs.push({ sequenceNumber, dx: SPEED, dy: 0 })
+    if (frontendPlayers[socket.id].username !=='front_lagger'){
     frontendPlayers[socket.id].x += SPEED
+    }
     socket.emit('keydown', { keycode: 'KeyD', sequenceNumber })
   }
 }, 15)
