@@ -48,3 +48,5 @@ Processing/graphical lag
 Connection lag
  - This refers usualy to any lag/ delay experienced between client and server and vice versa. there is often no proper way to get fully rid of this type of lag due to it being sometimes a physical issue but, it is possible to midigate its visable effects and there a large amount of stratagies to do. client side prediction, server reconciliation and Interpolation of back end player movement are all ways to reduce the preception of this lag.
 
+added front and back lagger
+if you type in front_lagger as your given username when prompted all client side prediction will be removed from your player and back_lagger will remove back interplation seen by other players
