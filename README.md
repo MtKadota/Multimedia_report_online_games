@@ -24,7 +24,7 @@ Event ticker (game tick)
  - this is used to crontroll player broadcasts of events to reduce over use and clogging of the server. this does help reduce the chance of loss of player boradcasts but a ticker that is too large will be precived the same as lag as updates and refreshes to the players will take time. note according to Vale game studios recommended backend tick rate is 15ms giving a roughly 66tps game update speed
 
 Server reconciliation 
- - used for syncing and updating backend if there are any missed reads of movements due to latency or other problems
+ - used for syncing and updating backend if there are any missed reads of movements due to latency or other problems. Creating a que of movements inputed by the player and then comparing that to the backend understanding of the game state the backend will be able to update any discrepancies between the two states of the game on back end.
 
 Interpolation of back end player movement viewed by player 2. 
  - Needed to smooth out any lag related choppiness and helps lower the precived amount of lag experienced by the player on the client end
